@@ -4,5 +4,3 @@ from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns=[
     path('details_display/', DetailsDisplay.as_view(), name= 'detail_display'),
 ]
-
-urlpatterns = format_suffix_patterns(urlpatterns)

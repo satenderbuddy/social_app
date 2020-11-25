@@ -10,6 +10,5 @@ class UserRegistration(models.Model):
     reg_date = models.DateTimeField(blank=True, null=True)
     password = models.CharField(max_length=256,null=True)
     class Meta:
-        managed = False
+        managed = True
         db_table = 'user_registration'
-    
