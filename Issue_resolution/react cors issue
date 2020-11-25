@@ -1,0 +1,24 @@
+1. CORS Issue: You might face it when making axios call from react to django
+Fix: 
+
+Install CORS header with - pip install django-cors-headers
+Install DRF with 	 - pip install djangorestframework
+
+
+in iBankLiveDjango/project/settings.py 
+	Add	'rest_framework','corsheaders', 		in INSTALLED_APPS
+
+	Add	'corsheaders.middleware.CorsMiddleware', 	'django.middleware.common.CommonMiddleware' in MIDDLEWARE
+
+	Add 	CORS_ORIGIN_ALLOW_ALL =True
+
+		CORS_ORIGIN_WHITELIST = (
+    		'http://localhost:3000/',
+		'127.0.0.1'
+		)
+
+		REST_FRAMEWORK = {
+		'DEFAULT_PERMISSION_CLASSES': [
+	        'rest_framework.permissions.AllowAny',
+    		]}						In the settings.py file
+

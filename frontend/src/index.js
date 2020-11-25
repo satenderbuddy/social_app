@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ShoppingList from "./display_details"
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <ShoppingList name="test"/>
   </React.StrictMode>,
   document.getElementById('root')
 );

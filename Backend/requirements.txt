@@ -4,3 +4,4 @@ djangorestframework
 pep8
 autopep8
 pylint
+django-cors-headers
