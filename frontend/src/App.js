@@ -1,26 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-// import axios from "axios"
+import React from "react"
+// import './App.css';
+import LoginPage from "./form_fields/Loginpage"
+import UserRegister from "./User/user_registration"
+import {BrowserRouter as Router,Route,Switch, Link,Redirect} from 'react-router-dom'
+// import InputField from "./form_fields/InputField"
+// import SubmitButton from "./form_fields/SubmitButton"
+// import DisplayDetails from './display_details'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+class App extends React.Component {
+    componentDidMount() {
+        //for fetching data form backend when loading login page
+    }
+    render(){
+        return (
+        <Router>
+        <Switch>
+            
+            <Route exact path="/" component={LoginPage} />
+            <Route exact path="/registration" component={UserRegister} />
+            
+            <Redirect to='/' />
+        </Switch>
+    </Router>
+
+        );
+    }
+    }
+
+    export default App;

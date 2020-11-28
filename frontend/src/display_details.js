@@ -4,8 +4,10 @@ import './index.css';
 // import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import axios from "axios"
+import config from "./config/config"
 
-class ShoppingList extends Component {
+
+class DisplayDetails extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -15,7 +17,8 @@ class ShoppingList extends Component {
 
     componentDidMount(){
         axios({
-            url: "http://localhost:8000/user/details_display/",
+            //url: "http://localhost:8000/user/details_display/",
+            url:config.DisplayDetails,
             data: "",
             method: 'get',
             })
@@ -51,7 +54,7 @@ class ShoppingList extends Component {
                                         <td sm="3" value= 'date'> {data.first_name} </td>
                                         <td sm="3" value= 'brand'> {data.last_name} </td>
                                         <td sm="3" value= 'date'> {data.dob} </td>
-                                        <td sm="3" value= 'date'>Rs. {data.email_id} </td>
+                                        <td sm="3" value= 'date'> {data.email_id} </td>
                                     </tr>
                                 )
                             })
@@ -60,7 +63,7 @@ class ShoppingList extends Component {
       );
     }
 }
-export default ShoppingList ;
+export default DisplayDetails ;
 
 // axios({
 //     url: config.GET_ISSUES_LIST,

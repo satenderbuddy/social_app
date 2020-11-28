@@ -1,7 +1,9 @@
 django
 djangorestframework
 #mysqlclient
-pep8
-autopep8
-pylint
+#pep8
+#autopep8
+#pylint
 django-cors-headers
+django-autoslug
+Pillow
