@@ -12,6 +12,7 @@ node_modules/
 package-lock.json
 migrations/
 .vscode/
+.eslintcache
 ------------------------------------------------
 
 Frontend setup 

@@ -3,7 +3,7 @@ import InputField from "./InputField";
 import axios from "axios"
 import config from "../config/config"
 import SubmitButton from "./SubmitButton"
-import { Input } from 'reactstrap';
+import { Form, FormGroup, Input,Label } from 'reactstrap';
 class LoginPage extends Component {
     constructor(props) {
         super(props);
@@ -61,7 +61,8 @@ class LoginPage extends Component {
         return (  
             <div>
                 Login Form Page
-                <form id="login">
+                <Form row id="login">
+                    <label>Username / email</label>
                     <InputField
                         type = "email"
                         placeholder= "email"
@@ -69,7 +70,7 @@ class LoginPage extends Component {
                         value = {this.state.email ? this.state.email:''}
                         onChange ={(val) => this.handleChange('email',val) }
                     />
-
+                    <Label>Password</Label>
                     <InputField
                         type = "password"
                         placeholder= "password"
@@ -83,21 +84,23 @@ class LoginPage extends Component {
                         id="test"
                         onChange={this.checkChange}
                     /> */}
+                    <FormGroup row>
+                        <SubmitButton
+                            type ="submit"
+                            disabled = {this.state.buttonDissabled}
+                            onClick = {this.loginSubmit}
+                            text="log in"
+                        />
 
-                    <SubmitButton
-                        type ="submit"
-                        disabled = {this.state.buttonDissabled}
-                        onClick = {this.loginSubmit}
-                        text="log in"
-                    />
-
-                    <SubmitButton 
-                        type="reset"
-                        onClick={this.resetForm}
-                        text="reset"
-                    />
+                        <SubmitButton 
+                            type="reset"
+                            onClick={this.resetForm}
+                            text="reset"
+                        />
+                        <a href="/registration">Register now</a> 
+                    </FormGroup>
                     {/* <button onClick={window.replace("/user_register")} >Register</button> */}
-                </form>
+                </Form>
             </div>
         );
     };

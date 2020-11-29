@@ -12,7 +12,7 @@ class SubmitButton extends Component {
                     color="primary"
                 >
                     {this.props.text}
-                </Button>
+                </Button>{' '}
 
             </div>
          );
