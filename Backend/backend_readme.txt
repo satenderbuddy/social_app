@@ -27,7 +27,7 @@ DATABASES = {
         'PORT': '',
     }
 }
-
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 ------------------------------------------------------
 
 for Backend setup please follow "social_app/Backend/backend_readme.txt"
