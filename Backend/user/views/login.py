@@ -6,19 +6,29 @@ from django.db.models import Q
 import json
 class Login(APIView):
 
-    def post(self,request):
-        print("in post")
+    def post(self,request): #user for login 
         print(request.data)
-        resp = {
-            "first_name":"satender",
-            "Last_name":"Singh",
-        }
-        return HttpResponse(json.dumps(resp),content_type="application/json")   
+        msg = ''
+        if "@" in request.POST["email"]:
+            user = User.objects.filter(Q(email=request.POST["email"]))
+        else :
+            user = User.objects.filter(Q(username=request.POST["email"]))
+        
+        if user:
+            allow_user = user[0].check_password(request.POST['password'])
+            if allow_user:
+                msg="sucess"
+            else:
+                msg = "Password Incorrect"
+        else:
+            msg="User does not exist"
+        print(msg)
+        return HttpResponse(json.dumps(msg),content_type="application/json")   
 
 
 
 class CheckUser(APIView):
-    def get(self,request):
+    def get(self,request): #used for checking the username in database for new user
         return Response('Restricted',content_type="application/json",status=401)
 
     def post(self,request):
@@ -27,14 +37,13 @@ class CheckUser(APIView):
                 user_name = request.POST['user_name']
                 print(user_name)
                 user = User.objects.filter(username=user_name)
-
                 if user:
                     return HttpResponse("Failure",content_type="application/json")
                 else:
                     return HttpResponse("success",content_type="application/json")
 
 class CreateUser(APIView):
-    def post(self,request):
+    def post(self,request): #function is used to create new user from online form
         user_data = request.POST
         user_exist = User.objects.filter(Q(email=user_data["email"]) | Q(username=user_data["username"]))
         if not user_exist:

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import InputField from "./InputField";
+import InputField from "../form_fields/InputField";
 import axios from "axios"
 import config from "../config/config"
-import SubmitButton from "./SubmitButton"
-import { Form, FormGroup, Input,Label } from 'reactstrap';
+import { Button, Form, FormGroup,Label, PopoverBody } from 'reactstrap';
 class LoginPage extends Component {
     constructor(props) {
         super(props);
@@ -13,7 +12,7 @@ class LoginPage extends Component {
             buttonDissabled:false
         }   
     // this.handleChange= this.handleChange.bind(this)
-    this.loginSubmit=this.loginSubmit.bind(this)
+    // this.loginSubmit=this.loginSubmit.bind(this)
     this.resetForm= this.resetForm.bind(this)
     // this.checkChange=this.checkChange.bind(this)
     }
@@ -24,18 +23,22 @@ class LoginPage extends Component {
             alert("Bitch please!!!")
             return;
         }
-        var login_form = document.forms["login"]
-        console.log(login_form)
         var login_data = new FormData()
         login_data.append("email",email)
         login_data.append("password",password)
         axios({
-            method: 'POST',
-            url: config.Login,
+            method: "post",
             data: login_data,
+            url: config.Login,
         })
         .then(function (response) {
             console.log(response.data);
+            if(response.data === "sucess"){
+                window.open("/home")
+            }
+            else{
+                alert(response.data)
+            }
         })
         .catch(function (error) {
             console.log(error);
@@ -59,9 +62,11 @@ class LoginPage extends Component {
     // }
     render() { 
         return (  
+            <PopoverBody>
             <div>
-                Login Form Page
+                <h3>User Login</h3>
                 <Form row id="login">
+                    <FormGroup>
                     <label>Username / email</label>
                     <InputField
                         type = "email"
@@ -69,39 +74,33 @@ class LoginPage extends Component {
                         id="email"
                         value = {this.state.email ? this.state.email:''}
                         onChange ={(val) => this.handleChange('email',val) }
-                    />
-                    <Label>Password</Label>
-                    <InputField
-                        type = "password"
-                        placeholder= "password"
-                        id="password"
-                        value = {this.state.password ? this.state.password:''}
-                        onChange ={(val) => this.handleChange('password',val) }
-                    />
-                    {/* <Input 
-                        type='text'
-                        placeholder=""
-                        id="test"
-                        onChange={this.checkChange}
-                    /> */}
-                    <FormGroup row>
-                        <SubmitButton
-                            type ="submit"
-                            disabled = {this.state.buttonDissabled}
-                            onClick = {this.loginSubmit}
-                            text="log in"
+                    /></FormGroup>
+                    <FormGroup>
+                        <Label>Password</Label>
+                        <InputField
+                            type = "Password"
+                            placeholder= "password"
+                            id="password"
+                            value = {this.state.password ? this.state.password:''}
+                            onChange ={(val) => this.handleChange('password',val) }
                         />
-
-                        <SubmitButton 
-                            type="reset"
-                            onClick={this.resetForm}
-                            text="reset"
-                        />
-                        <a href="/registration">Register now</a> 
                     </FormGroup>
-                    {/* <button onClick={window.replace("/user_register")} >Register</button> */}
+                    <Button
+                        type =""
+                        disabled = {this.state.buttonDissabled}
+                        color="primary"
+                        onClick = {this.loginSubmit}
+                    >log in</Button>{' '}
+
+                    <Button
+                        type="reset"
+                        onClick={this.resetForm}
+                        color="secondary"
+                    >reset</Button>{' '}
+                    <a href="/registration">Register now</a> 
                 </Form>
             </div>
+            </PopoverBody>
         );
     };
 }

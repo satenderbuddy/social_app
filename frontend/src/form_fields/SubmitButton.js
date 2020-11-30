@@ -9,11 +9,13 @@ class SubmitButton extends Component {
                     className ="btn"
                     disabled= {this.props.disabled}
                     onClick={this.props.onClick}
-                    color="primary"
+                    color={this.props.color}
+                    size={this.props.size}
+                    style={{padding:"10%"}}
+                    outline
                 >
                     {this.props.text}
-                </Button>{' '}
-
+                </Button>
             </div>
          );
     }
