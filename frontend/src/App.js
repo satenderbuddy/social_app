@@ -2,7 +2,7 @@ import React from "react"
 // import './App.css';
 import LoginPage from "./User/Loginpage"
 import UserRegister from "./User/user_registration"
-import {BrowserRouter as Router,Route,Switch, Link,Redirect} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
 import Home from "./User/home";
 // import InputField from "./form_fields/InputField"
 // import SubmitButton from "./form_fields/SubmitButton"

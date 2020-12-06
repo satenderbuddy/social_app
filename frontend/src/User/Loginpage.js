@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import InputField from "../form_fields/InputField";
 import axios from "axios"
 import config from "../config/config"
-import { Button, Form, FormGroup,Label, PopoverBody } from 'reactstrap';
+import { Button, Form, FormGroup,Input,Label, PopoverBody } from 'reactstrap';
+axios.defaults.timeout = 300;
 class LoginPage extends Component {
     constructor(props) {
         super(props);
@@ -11,14 +11,15 @@ class LoginPage extends Component {
             password:'',
             buttonDissabled:false
         }   
-    // this.handleChange= this.handleChange.bind(this)
-    // this.loginSubmit=this.loginSubmit.bind(this)
+    this.handleChange= this.handleChange.bind(this)
+    this.loginSubmit=this.loginSubmit.bind(this)
     this.resetForm= this.resetForm.bind(this)
     // this.checkChange=this.checkChange.bind(this)
     }
     loginSubmit(){
         var email =this.state.email;
         var password = this.state.password;
+        console.log(email,password)
         if(password.length<8){
             alert("Bitch please!!!")
             return;
@@ -29,20 +30,24 @@ class LoginPage extends Component {
         axios({
             method: "post",
             data: login_data,
+            timeout: 1000 * 5,
             url: config.Login,
         })
         .then(function (response) {
             console.log(response.data);
             if(response.data === "sucess"){
-                window.open("/home")
+                // window.open("/home")
+                alert(response.data)
+                window.location.href='/home'
             }
             else{
                 alert(response.data)
             }
         })
-        .catch(function (error) {
-            console.log(error);
-        });
+        .catch(error => {
+            console.log('Get canceled error', error);
+            console.log(error.response.data.message)
+          });
         
     }
     handleChange(id,val){
@@ -65,28 +70,27 @@ class LoginPage extends Component {
             <PopoverBody>
             <div>
                 <h3>User Login</h3>
-                <Form row id="login">
                     <FormGroup>
                     <label>Username / email</label>
-                    <InputField
+                    <Input
                         type = "email"
                         placeholder= "email"
                         id="email"
                         value = {this.state.email ? this.state.email:''}
-                        onChange ={(val) => this.handleChange('email',val) }
+                        onChange ={(e) => this.handleChange('email',e.target.value) }
                     /></FormGroup>
                     <FormGroup>
                         <Label>Password</Label>
-                        <InputField
+                        <Input
                             type = "Password"
                             placeholder= "password"
                             id="password"
                             value = {this.state.password ? this.state.password:''}
-                            onChange ={(val) => this.handleChange('password',val) }
+                            onChange ={(e) => this.handleChange('password',e.target.value) }
                         />
                     </FormGroup>
                     <Button
-                        type =""
+                        type ="submit"
                         disabled = {this.state.buttonDissabled}
                         color="primary"
                         onClick = {this.loginSubmit}
@@ -98,7 +102,6 @@ class LoginPage extends Component {
                         color="secondary"
                     >reset</Button>{' '}
                     <a href="/registration">Register now</a> 
-                </Form>
             </div>
             </PopoverBody>
         );

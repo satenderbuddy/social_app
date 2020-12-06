@@ -49,6 +49,10 @@ class UserRegistation extends Component {
 
     CheckUserName(e){
         var username = document.getElementById('username').value
+        //password cannot be smaller then 4 character
+        if(username.length<4){ 
+            return;
+        }
         var user_data = new FormData()
         user_data.append('user_name',username)
         user_data.append('check_user',1)
@@ -59,7 +63,7 @@ class UserRegistation extends Component {
             url:config.CheckUserName
         }).then(function (response) {
             // handle success
-            if (response.data ="sucess"){
+            if (response.data ==="success"){
                 alert('username is available')
                 return
             }
