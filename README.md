@@ -19,6 +19,7 @@ Frontend setup
 donload nodejs from link below
 https://nodejs.org/en/
 
-"npm i -g create-react-app@3.4.1" # I am using this version; you can use any version that is avialable for your system or go for lastest by remove "@3.4.1" part
-
+in frontend/ folder run
 npm install axios
+
+Regster functionality implemented , username checnk implemented , login password back end check implemented.
