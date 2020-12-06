@@ -1,9 +1,11 @@
-django
-djangorestframework
-#mysqlclient
-#pep8
-#autopep8
-#pylint
-django-cors-headers
-django-autoslug
-Pillow
+asgiref==3.3.1
+Django==3.1.4
+django-autoslug==1.9.8
+django-cors-headers==3.5.0
+djangorestframework==3.12.2
+#mysqlclient==2.0.1 #import database engine and engine 
+Pillow==8.0.1
+pkg-resources==0.0.0
+#PyMySQL==0.10.1 #install data base client
+pytz==2020.4
+sqlparse==0.4.1
