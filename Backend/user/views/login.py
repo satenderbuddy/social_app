@@ -15,14 +15,19 @@ class Login(APIView):
             user = User.objects.filter(Q(username=request.POST["email"]))
         
         if user:
-            allow_user = user[0].check_password(request.POST['password'])
+            user=user[0]
+            allow_user = user.check_password(request.POST['password'])
             if allow_user:
                 msg="sucess"
+                data={
+                    'msg':msg,
+                    'user_id':user.id,
+
+                }
             else:
                 msg = "Password Incorrect"
         else:
             msg="User does not exist"
-        print(msg)
         return HttpResponse(json.dumps(msg),content_type="application/json")   
 
 

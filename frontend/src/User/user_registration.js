@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Input, Button, Label, Form, FormGroup, Col } from 'reactstrap'
 import axios from 'axios'
 import config from '../config/config'
+import UserNavBar from "./navbar"
 class UserRegistation extends Component {
     constructor(props) {
         super(props);
@@ -82,6 +83,7 @@ class UserRegistation extends Component {
         return (
             <body>
                 <div>
+                    <UserNavBar/>
 	                <title>Registration</title>
 
                         {/* <Form id="register" name="register" method="post"> */}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios"
 import config from "../config/config"
 import { Button, Form, FormGroup,Input,Label, PopoverBody } from 'reactstrap';
+import UserNavBar from "./navbar"
 axios.defaults.timeout = 300;
 class LoginPage extends Component {
     constructor(props) {
@@ -69,6 +70,7 @@ class LoginPage extends Component {
         return (  
             <PopoverBody>
             <div>
+                <UserNavBar disable_login_icon={true}/>
                 <h3>User Login</h3>
                     <FormGroup>
                     <label>Username / email</label>

@@ -4,6 +4,7 @@ import LoginPage from "./User/Loginpage"
 import UserRegister from "./User/user_registration"
 import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
 import Home from "./User/home";
+import WelcomePage from "./welcome_page"
 // import InputField from "./form_fields/InputField"
 // import SubmitButton from "./form_fields/SubmitButton"
 // import DisplayDetails from './display_details'
@@ -17,8 +18,8 @@ class App extends React.Component {
         return (
         <Router>
         <Switch>
-            
-            <Route exact path="/" component={LoginPage} />
+            <Route exact path="/" component={WelcomePage} />
+            <Route exact path="/login" component={LoginPage} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/registration" component={UserRegister} />
             
