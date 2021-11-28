@@ -10,11 +10,12 @@ const config = {
     // USER_ROLES                              : window.localStorage.getItem('user_role'),
     // CURRENT_USER                            : window.localStorage.getItem('current_user'),
     
-    CheckUserName                           : server_back+"user/check_username/",
-    CreateUser                              : server_back+'user/create_user/',
+    CheckUserName                           : server_back+"users/check_username/",
+    CreateUser                              : server_back+'users/create_user/',
     // PRESS_PUB_LANG_LIST                     : server_back+'press_publication/languages/',
-    DisplayDetails                          : server_back+'user/details_display/',
-    Login                                   : server_back+'user/login/',
+    DisplayDetails                          : server_back+'users/details_display/',
+    Login                                   : server_back+'users/login/',
+    Logout                                  : server_back+'users/logout/'
     // USER_ID                                 : window.localStorage.getItem('user_id'),
 }
 export default config;

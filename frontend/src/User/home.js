@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {} from 'reactstrap';
+import UserNavBar from "./navbar"
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +15,10 @@ class Home extends Component {
     }
     render() { 
         return ( 
-            <div><h3>User home page</h3>
+            
+            <div>
+                <UserNavBar disable_login_icon={false} login={true}/>
+                <h3>User home page</h3>
             <h4>User is logged in sucessfully 
         </h4>{
 

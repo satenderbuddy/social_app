@@ -1,0 +1,11 @@
+pycache 
+venv/ 
+localsettings.py 
+node_modules/ 
+package-lock.json 
+migrations/ 
+.vscode/
+__pycache__
+.venv
+.env
+.eslintcache

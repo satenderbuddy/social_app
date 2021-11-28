@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from "axios"
+import config from '../config/config'
 import {
     Collapse,
     Navbar,
@@ -11,7 +13,6 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
-    NavbarText
   } from 'reactstrap';
 
   class UserNavBar extends React.Component {
@@ -26,14 +27,30 @@ import {
     }
     componentDidMount() {
         console.log(this.props.login)
-        if(this.props.login != "undefined"){
+        if(this.props.login !== "undefined"){
             var login = this.props.login;
             this.setState({login:login})
         }
-        if(this.props.disable_login_icon != "undefined"){
+        if(this.props.disable_login_icon !== "undefined"){
             var display = this.props.disable_login_icon;
             this.setState({disable_login_icon:display})
         }
+    }
+
+    logout(){
+      axios({
+        method: "post",
+        data: {},
+        // timeout: 1000 * 5,
+        url: config.Logout,
+    })
+    .then(function (response) {
+        console.log(response.data.status);
+    })
+    .catch(function(error) {
+        console.log(error)
+    });
+      // window.location.href="/login"
     }
     toggle(){
         if(this.state.isOpen){
@@ -77,12 +94,11 @@ import {
                 </Nav>
                 {this.state.login?
                     <NavLink hidden={this.state.disable_login_icon} href="/">logout</NavLink>:
-                    <NavLink hidden={this.state.disable_login_icon} href="/login">Login</NavLink>    
+                    <NavLink hidden={this.state.disable_login_icon} href="home"  onClick={this.Logout}>Login</NavLink>    
                 }
                 
               </Collapse>
             </Navbar>
-            <h2>Welcome to Social App React Webpage</h2>
           </div>
         );
       }

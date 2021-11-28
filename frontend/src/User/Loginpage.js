@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import axios from "axios"
 import config from "../config/config"
-import { Button, Form, FormGroup,Input,Label, PopoverBody } from 'reactstrap';
+import { Button, FormGroup,Input,Label, PopoverBody } from 'reactstrap';
 import UserNavBar from "./navbar"
 axios.defaults.timeout = 300;
+axios.interceptors.request.use(function (config) {
+    const token = sessionStorage.getItem('token');
+    config.headers.Authorization =  token;
+
+    return config;
+});
 class LoginPage extends Component {
     constructor(props) {
         super(props);
@@ -28,27 +34,29 @@ class LoginPage extends Component {
         var login_data = new FormData()
         login_data.append("email",email)
         login_data.append("password",password)
+        console.log("here===")
         axios({
             method: "post",
             data: login_data,
-            timeout: 1000 * 5,
+            // timeout: 1000 * 5,
             url: config.Login,
         })
         .then(function (response) {
-            console.log(response.data);
-            if(response.data === "sucess"){
+            console.log(response.data.status);
+            if(response.data.status===true){
                 // window.open("/home")
-                alert(response.data)
-                window.location.href='/home'
+                console.log("======",response.data['msg'])
+                alert(response.data['msg']);
+                sessionStorage.setItem('token', response.data.data.token);
+                window.location.href='/home';
             }
             else{
-                alert(response.data)
+                console.log(response.data)
             }
         })
-        .catch(error => {
-            console.log('Get canceled error', error);
-            console.log(error.response.data.message)
-          });
+        .catch(function(error) {
+            console.log(error)
+        });
         
     }
     handleChange(id,val){

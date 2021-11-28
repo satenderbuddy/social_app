@@ -18,5 +18,5 @@ from django.urls import path,include
 from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('user/', include('user.urls')),
+    path('users/', include('users.urls')),
 ]

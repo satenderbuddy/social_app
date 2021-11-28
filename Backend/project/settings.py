@@ -25,19 +25,31 @@ SECRET_KEY = '%$f+s7e@4e%&_$s%xei7g$2j6%r2r8xn!#nl1-ak)6od_n1&x!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR  +'/db.sqlite3',
+    }
+}
+AUTH_USER_MODEL="users.Users"
+
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
+        'rest_framework.permissions.IsAuthenticated'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',  # <-- And here
+        # 'rest_framework.authentication.SessionAuthentication',  # <-- And here
+        # 'rest_framework.authentication.BaseAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
 }
 # Application definition
-
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = (
@@ -55,7 +67,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'user',
+    'users',
 
 ]
 
@@ -90,7 +102,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
