@@ -1,5 +1,6 @@
 pycache 
-venv/ 
+venv
+.venv
 localsettings.py 
 node_modules/ 
 package-lock.json 

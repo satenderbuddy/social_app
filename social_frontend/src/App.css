@@ -1,5 +1,12 @@
-.App {
+/* .App {
   text-align: center;
+} */
+.App {
+  background-image: url('../public/bg6.avif');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  tab-size: 2;
 }
 
 .App-logo {
@@ -35,4 +42,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+body {
+  color: #333; /* Sets the default text color to slightly darker than normal */
 }
